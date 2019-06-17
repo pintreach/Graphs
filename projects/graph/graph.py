@@ -2,40 +2,43 @@
 Simple graph implementation
 """
 from util import Stack, Queue  # These may come in handy
+from collections import deque
 
 class Graph:
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
     def __init__(self):
         self.vertices = {}
     def add_vertex(self, vertex):
-        """
-        Add a vertex to the graph.
-        """
-        pass  # TODO
+        self.verticies[vertex] = set()
+        
     def add_edge(self, v1, v2):
-        """
-        Add a directed edge to the graph.
-        """
-        pass  # TODO
+        if v1 in self.vertices and v2 in self.vertices:
+            self.vertices[v1].add(v2)
+            
     def bft(self, starting_vertex):
-        """
-        Print each vertex in breadth-first order
-        beginning from starting_vertex.
-        """
-        pass  # TODO
+        q = deque()
+        q.appendleft(starting_vertex)
+        while q:
+            visited = set()
+            v = q.pop()
+            if v not in visited:
+                visited.add(v)
+                print(v)
+                for neighbor in self.vertices[v]:
+                    q.appendleft(neighbor)
     def dft(self, starting_vertex):
-        """
-        Print each vertex in depth-first order
-        beginning from starting_vertex.
-        """
-        pass  # TODO
+        q = deque()
+        q.append(starting_vertex)
+        while q:
+            visited = set()
+            v = q.pop()
+            if v not in visited:
+                visited.add(v)
+                print(v)
+                for neighbor in self.vertices[v]:
+                    q.appendleft(neighbor)
     def dft_recursive(self, starting_vertex):
-        """
-        Print each vertex in depth-first order
-        beginning from starting_vertex.
-        This should be done using recursion.
-        """
-        pass  # TODO
+        
     def bfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing the shortest path from
